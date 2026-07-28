@@ -52,19 +52,19 @@ Designed using Python, Flask, SQLite and Nmap, AEGISAI demonstrates real-world S
 
 ## 🏠 Landing Page
 
-![Landing Page](screenshots/landing%20page.png)
+![Landing Page](screenshots/landing-page.png)
 
 ---
 
 ## 📊 Dashboard
 
-![Dashboard](screenshots/dashboard%20(2)%20-%20Copy.png)
+![Dashboard](screenshots/dashboard.png)
 
 ---
 
 ## 🌐 Assets
 
-![Assets](screenshots/assets%20-%20Copy.png)
+![Assets](screenshots/assets.png)
 
 ---
 
@@ -76,7 +76,7 @@ Designed using Python, Flask, SQLite and Nmap, AEGISAI demonstrates real-world S
 
 ## 📄 Reports
 
-![Reports](screenshots/reports%20-%20Copy.png)
+![Reports](screenshots/reports.png)
 
 ---
 
