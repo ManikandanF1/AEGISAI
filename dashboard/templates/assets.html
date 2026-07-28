@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AEGISAI - Asset Inventory</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     Sidebar
+========================================== -->
+
+<div class="sidebar">
+
+    <h2>🛡 AEGISAI</h2>
+
+    <ul>
+
+        <li>
+            <a href="/">🏠 Dashboard</a>
+        </li>
+
+        <li class="active">
+            <a href="/assets">🌐 Assets</a>
+        </li>
+
+        <li>
+            <a href="/threats">🚨 Threats</a>
+        </li>
+
+        <li>
+            <a href="/reports">📄 Reports</a>
+        </li>
+
+        <li>
+            <a href="/settings">⚙ Settings</a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- ==========================================
+     Main Content
+========================================== -->
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>🌐 Asset Inventory</h1>
+
+    </div>
+
+    <!-- Asset Cards -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Assets</h3>
+            <h1>{{ assets|length }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Status</h3>
+            <h1 style="color:#3fb950;">ONLINE</h1>
+        </div>
+
+    </div>
+
+    <!-- Asset Table -->
+
+    <div class="table-section">
+
+        <h2>Discovered Assets</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Hostname</th>
+                    <th>IP Address</th>
+                    <th>Port</th>
+                    <th>Service</th>
+                    <th>Risk</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% if assets %}
+
+                {% for row in assets %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+
+                    <td>{{ row[1] }}</td>
+
+                    <td>{{ row[2] }}</td>
+
+                    <td>{{ row[3] }}</td>
+
+                    {% if row[4] == "HIGH" %}
+
+                        <td class="high">{{ row[4] }}</td>
+
+                    {% elif row[4] == "MEDIUM" %}
+
+                        <td class="medium">{{ row[4] }}</td>
+
+                    {% else %}
+
+                        <td class="low">{{ row[4] }}</td>
+
+                    {% endif %}
+
+                </tr>
+
+                {% endfor %}
+
+            {% else %}
+
+                <tr>
+
+                    <td colspan="5" style="padding:25px;text-align:center;font-weight:bold;">
+
+                        No Assets Found
+
+                    </td>
+
+                </tr>
+
+            {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

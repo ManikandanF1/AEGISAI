@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AEGISAI - Threat Intelligence</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>🛡 AEGISAI</h2>
+
+    <ul>
+        <li><a href="/">🏠 Dashboard</a></li>
+        <li><a href="/assets">🌐 Assets</a></li>
+        <li><a href="/threats">🚨 Threats</a></li>
+        <li><a href="/reports">📄 Reports</a></li>
+        <li><a href="/settings">⚙ Settings</a></li>
+    </ul>
+
+</div>
+
+<div class="main">
+
+    <h1>🚨 Threat Intelligence</h1>
+
+    <div class="table-section">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Attack</th>
+                    <th>MITRE ATT&CK</th>
+                    <th>Severity</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for row in threats %}
+
+            <tr>
+
+                <td>{{ row.attack }}</td>
+
+                <td>{{ row.mitre }}</td>
+
+                {% if row.severity=="HIGH" %}
+                    <td class="high">{{ row.severity }}</td>
+
+                {% elif row.severity=="MEDIUM" %}
+                    <td class="medium">{{ row.severity }}</td>
+
+                {% else %}
+                    <td class="low">{{ row.severity }}</td>
+                {% endif %}
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

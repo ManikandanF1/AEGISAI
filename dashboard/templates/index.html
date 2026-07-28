@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AEGISAI - Autonomous Cyber Defense Platform</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<!-- ==========================================
+     Sidebar
+========================================== -->
+
+<div class="sidebar">
+
+    <h2>🛡 AEGISAI</h2>
+
+    <ul>
+
+        <li>
+            <a href="/">🏠 Dashboard</a>
+        </li>
+
+        <li>
+            <a href="/assets">🌐 Assets</a>
+        </li>
+
+        <li>
+            <a href="/threats">🚨 Threats</a>
+        </li>
+
+        <li>
+            <a href="/reports">📄 Reports</a>
+        </li>
+
+        <li>
+            <a href="/settings">⚙ Settings</a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- ==========================================
+     Main
+========================================== -->
+
+<div class="main">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>Autonomous Cyber Defense Platform</h1>
+
+        <div style="display:flex;gap:15px;align-items:center;flex-wrap:wrap;">
+
+            <!-- Search -->
+
+            <form action="/" method="GET">
+
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ search }}"
+                    placeholder="Search Host / Port / Service / Risk"
+                    class="search-box">
+
+            </form>
+
+            <!-- Scan -->
+
+           <form action="/scan" method="POST" style="display:flex;gap:10px;">
+
+    <input
+        type="text"
+        name="target"
+        placeholder="127.0.0.1 or scanme.nmap.org"
+        class="search-box"
+        style="width:260px;"
+    >
+
+    <button class="scan-btn">
+        🔄 Scan Network
+    </button>
+
+</form>
+
+            <!-- PDF -->
+
+            <form action="/export" method="GET">
+
+                <button class="scan-btn">
+                    📄 Export PDF
+                </button>
+
+            </form>
+
+            <!-- CSV -->
+
+            <form action="/export_csv" method="GET">
+
+                <button class="scan-btn">
+                    📊 Export CSV
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Dashboard Cards -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Assets</h3>
+            <h1>{{ total_assets }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>High Risk</h3>
+            <h1>{{ high_risk }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Low Risk</h3>
+            <h1>{{ low_risk }}</h1>
+        </div>
+
+        <div class="card">
+            <h3>Threat Score</h3>
+            <h1>{{ threat_score }}/10</h1>
+        </div>
+
+    </div>
+
+    <!-- AI Decision Engine -->
+
+    <div class="panel">
+
+        <div class="left">
+
+            <h2>🤖 AI Decision Engine</h2>
+
+            <p><strong>Likely Attack</strong></p>
+            <p>{{ ai_attack }}</p>
+
+            <br>
+
+            <p><strong>MITRE ATT&CK</strong></p>
+            <p>{{ mitre }}</p>
+
+            <br>
+
+            <h3>Recommendations</h3>
+
+            <ul>
+
+                {% for item in recommendations %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        <div class="right">
+
+            <canvas id="riskChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- Scan Results -->
+
+    <div class="table-section">
+
+        <h2>Recent Scan Results</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Time</th>
+                    <th>Host</th>
+                    <th>Port</th>
+                    <th>State</th>
+                    <th>Service</th>
+                    <th>Risk</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% if scans %}
+
+                {% for row in scans %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+
+                    {% if row[5] == "HIGH" %}
+                        <td class="high">{{ row[5] }}</td>
+
+                    {% elif row[5] == "MEDIUM" %}
+                        <td class="medium">{{ row[5] }}</td>
+
+                    {% else %}
+                        <td class="low">{{ row[5] }}</td>
+
+                    {% endif %}
+
+                </tr>
+
+                {% endfor %}
+
+            {% else %}
+
+                <tr>
+
+                    <td colspan="6" style="padding:20px;text-align:center;">
+                        No Scan Results Found
+                    </td>
+
+                </tr>
+
+            {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     Pass Flask Data
+========================================== -->
+
+<script>
+
+const dashboardData = {
+
+    high: {{ high_risk }},
+
+    medium: {{ medium_risk }},
+
+    low: {{ low_risk }}
+
+};
+
+</script>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+
+</html>

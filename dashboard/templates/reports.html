@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AEGISAI - Reports</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>🛡 AEGISAI</h2>
+
+    <ul>
+        <li><a href="/">🏠 Dashboard</a></li>
+        <li><a href="/assets">🌐 Assets</a></li>
+        <li><a href="/threats">🚨 Threats</a></li>
+        <li><a href="/reports">📄 Reports</a></li>
+        <li><a href="/settings">⚙ Settings</a></li>
+    </ul>
+
+</div>
+
+<div class="main">
+
+    <h1>📄 Reports Center</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>PDF Report</h3>
+
+            <br>
+
+            <a href="/export">
+                <button class="scan-btn">
+                    Download PDF
+                </button>
+            </a>
+
+        </div>
+
+        <div class="card">
+            <h3>CSV Report</h3>
+
+            <br>
+
+            <a href="/export_csv">
+                <button class="scan-btn">
+                    Download CSV
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

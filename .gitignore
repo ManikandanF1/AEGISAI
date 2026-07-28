@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+
+.vscode/
+
+venv/
+.env
+
+reports/*.pdf
+reports/*.csv
+
+*.db-journal
+Thumbs.db
+.DS_Store
