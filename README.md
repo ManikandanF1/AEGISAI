@@ -149,37 +149,37 @@ AEGISAI
 
 # 🚀 Installation
 
-Clone the repository
+## 1. Clone the repository
 
 ```bash
 git clone https://github.com/ManikandanF1/AEGISAI.git
 ```
 
-Go into the project
+## 2. Navigate to the project
 
 ```bash
 cd AEGISAI
 ```
 
-Install dependencies
+## 3. Install the required dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install flask fastapi uvicorn jinja2 python-nmap reportlab requests pandas matplotlib scikit-learn
 ```
 
-Run
+## 4. Run the application
+
+> Run the application from the project root using the module command.
 
 ```bash
-python dashboard/app.py
+python -m dashboard.app
 ```
 
-Open
+## 5. Open your browser
 
 ```
 http://127.0.0.1:5000
 ```
-
----
 
 # 📈 Future Enhancements
 
